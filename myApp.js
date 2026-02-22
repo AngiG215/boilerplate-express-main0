@@ -6,6 +6,8 @@ app.get("/", (req, res) => {
   // __dirname nos da la ruta de la carpeta actual
   // Luego le sumamos la ubicación del archivo HTML
   const absolutePath = __dirname + '/views/index.html';
+
+  app.use("/public", express.static(__dirname + "/public"));
   
   res.sendFile(absolutePath);
 });
