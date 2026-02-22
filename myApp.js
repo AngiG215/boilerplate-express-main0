@@ -7,11 +7,18 @@ app.get("/", (req, res) => {
   // Luego le sumamos la ubicación del archivo HTML
   const absolutePath = __dirname + '/views/index.html';
 
- app.get("/json", (req, res) => {
+app.get("/json", (req, res) => {
+  let message = "Hello json";
+  
+  // Accedemos a la variable de entorno con process.env
+  if (process.env.MESSAGE_STYLE === "uppercase") {
+    message = message.toUpperCase();
+  }
+  
   res.json({
-    "message": "Hello json"
+    "message": message
   });
-});
+  
   res.sendFile(absolutePath);
 });
 
