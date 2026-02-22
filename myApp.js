@@ -7,8 +7,7 @@ app.get("/", (req, res) => {
   // Luego le sumamos la ubicación del archivo HTML
   const absolutePath = __dirname + '/views/index.html';
 
-  app.use("/public", express.static(__dirname + "/public"));
-  app.get("/json", (req, res) => {
+ app.get("/json", (req, res) => {
   res.json({
     "message": "Hello json"
   });
