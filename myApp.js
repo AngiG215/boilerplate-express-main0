@@ -6,9 +6,8 @@ app.use((req, res, next) => {
   // Construimos el mensaje con la información de la petición
   const logString = `${req.method} ${req.path} - ${req.ip}`;
   console.log(logString);
-  
-app.get("/now", (req, res, next) => {
-  req.time = new Date().toString(); 
+ app.get("/now", (req, res, next) => {
+  req.time = new Date().toString();
   next();
 }, (req, res) => {
   res.json({
