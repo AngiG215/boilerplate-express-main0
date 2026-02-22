@@ -8,13 +8,11 @@ app.use((req, res, next) => {
   console.log(logString);
   
 app.get("/now", (req, res, next) => {
-  // 1. Añadimos la hora al objeto req
-  req.time = new Date().toString();
-  next(); // Pasamos a la siguiente función
+  req.time = new Date().toString(); 
+  next();
 }, (req, res) => {
-  // 2. Respondemos con el JSON usando lo que guardamos en req.time
   res.json({
-    "time": req.time
+    time: req.time
   });
 });
   // ¡FUNDAMENTAL! Llamar a next() para que el servidor no se quede "colgado"
