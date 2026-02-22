@@ -1,25 +1,24 @@
 let express = require('express');
 let app = express();
 
-// Sustituye tu app.get anterior o añade este:
+// 1. Ruta para el HTML (Asegúrate de cerrarla con }); )
 app.get("/", (req, res) => {
-  // __dirname nos da la ruta de la carpeta actual
-  // Luego le sumamos la ubicación del archivo HTML
   const absolutePath = __dirname + '/views/index.html';
+  res.sendFile(absolutePath); 
+}); // <-- Aquí se cierra la ruta raíz
 
+// 2. Ruta para el JSON
 app.get("/json", (req, res) => {
   let message = "Hello json";
   
-  // Accedemos a la variable de entorno con process.env
   if (process.env.MESSAGE_STYLE === "uppercase") {
     message = message.toUpperCase();
   }
   
+  // Enviamos SOLO el json
   res.json({
     "message": message
   });
-  
-  res.sendFile(absolutePath);
-});
+}); // <-- Aquí se cierra la ruta json
 
 module.exports = app;
