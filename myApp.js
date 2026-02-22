@@ -1,13 +1,13 @@
 let express = require('express');
 let app = express();
 
-// 1. Esto ya lo tienes:
-console.log("Hello World");
-
-// 2. NUEVO: Responder a las peticiones GET en la raíz "/"
-app.get("/", function(req, res) {
-  res.send("Hello Express");
+// Sustituye tu app.get anterior o añade este:
+app.get("/", (req, res) => {
+  // __dirname nos da la ruta de la carpeta actual
+  // Luego le sumamos la ubicación del archivo HTML
+  const absolutePath = __dirname + '/views/index.html';
+  
+  res.sendFile(absolutePath);
 });
 
-// No olvides exportar app si el boilerplate lo requiere
 module.exports = app;
