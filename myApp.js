@@ -6,15 +6,14 @@ app.use((req, res, next) => {
   // Construimos el mensaje con la información de la petición
   const logString = `${req.method} ${req.path} - ${req.ip}`;
   console.log(logString);
-  app.get("/now", (req, res, next) => {
+  
+app.get("/now", (req, res, next) => {
   // 1. Añadimos la hora al objeto req
   req.time = new Date().toString();
   next(); // Pasamos a la siguiente función
 }, (req, res) => {
   // 2. Respondemos con el JSON usando lo que guardamos en req.time
-  res.json({
-    "time": req.time
-  });
+  res.json({ "time": req.time });
 });
   // ¡FUNDAMENTAL! Llamar a next() para que el servidor no se quede "colgado"
   next();
