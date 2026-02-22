@@ -1,24 +1,26 @@
 let express = require('express');
 let app = express();
 
-// 1. Ruta para el HTML (Asegúrate de cerrarla con }); )
-app.get("/", (req, res) => {
-  const absolutePath = __dirname + '/views/index.html';
-  res.sendFile(absolutePath); 
-}); // <-- Aquí se cierra la ruta raíz
+// 1. Servir archivos estáticos (opcional pero recomendado tenerlo arriba)
+app.use("/public", express.static(__dirname + "/public"));
 
-// 2. Ruta para el JSON
+// 2. Ruta raíz para el index.html
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
+// 3. Ruta /json con la lógica de MESSAGE_STYLE
 app.get("/json", (req, res) => {
   let message = "Hello json";
   
-  // Leemos la variable de entorno
   if (process.env.MESSAGE_STYLE === "uppercase") {
-    message = message.toUpperCase(); // Se convierte en "HELLO JSON"
+    message = message.toUpperCase();
   }
-  // Enviamos la respuesta final
+  
   res.json({
     "message": message
   });
-}); // <-- Aquí se cierra la ruta json
+});
 
+// IMPORTANTE: Solo un module.exports al final
 module.exports = app;
