@@ -11,10 +11,15 @@ app.get("/", (req, res) => {
 app.get("/json", (req, res) => {
   let message = "Hello json";
   
+  // Leemos la variable de entorno
   if (process.env.MESSAGE_STYLE === "uppercase") {
-    message = message.toUpperCase();
+    message = message.toUpperCase(); // Se convierte en "HELLO JSON"
   }
-  
+  // Enviamos la respuesta final
+  res.json({
+    "message": message
+  });
+});
   // Enviamos SOLO el json
   res.json({
     "message": message
