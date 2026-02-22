@@ -1,6 +1,16 @@
 let express = require('express');
 let app = express();
 
+// Este es tu middleware de logueo
+app.use((req, res, next) => {
+  // Construimos el mensaje con la información de la petición
+  const logString = `${req.method} ${req.path} - ${req.ip}`;
+  console.log(logString);
+  
+  // ¡FUNDAMENTAL! Llamar a next() para que el servidor no se quede "colgado"
+  next();
+});
+
 // 1. Servir archivos estáticos (opcional pero recomendado tenerlo arriba)
 app.use("/public", express.static(__dirname + "/public"));
 
