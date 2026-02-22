@@ -13,7 +13,9 @@ app.get("/now", (req, res, next) => {
   next(); // Pasamos a la siguiente función
 }, (req, res) => {
   // 2. Respondemos con el JSON usando lo que guardamos en req.time
-  res.json({ "time": req.time });
+  res.json({
+    "time": req.time
+  });
 });
   // ¡FUNDAMENTAL! Llamar a next() para que el servidor no se quede "colgado"
   next();
