@@ -12,9 +12,7 @@ app.get("/", (req, res) => {
 // 3. Ruta /json con la lógica de MESSAGE_STYLE
 app.get("/json", (req, res) => {
   let message = "Hello json";
-  {
-  "message": "Hello json"
-}
+ 
   if (process.env.MESSAGE_STYLE === "uppercase") {
     message = message.toUpperCase();
   }
