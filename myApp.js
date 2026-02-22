@@ -19,11 +19,6 @@ app.get("/json", (req, res) => {
   res.json({
     "message": message
   });
-});
-  // Enviamos SOLO el json
-  res.json({
-    "message": message
-  });
 }); // <-- Aquí se cierra la ruta json
 
 module.exports = app;
